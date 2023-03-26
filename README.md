@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/AndreWohnsland/CocktailBerry/master/docs/pictures/CocktailBerry.svg" alt="CocktailBerry"/>
+
 # CocktailBerry-Addons
 
 Repository for all official [CocktailBerry addons](https://cocktailberry.readthedocs.io/).
