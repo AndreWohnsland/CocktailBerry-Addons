@@ -1,0 +1,7 @@
+[
+  {
+    "name": "Start Glass Volume",
+    "description": "A simple addon, which adds the option to define the default glass volume, set at machine start. This setting will replace the default 200 ml with the selected value.",
+    "url": "https://github.com/AndreWohnsland/CocktailBerry-Addons/blob/main/addons/start_glass_volume.py"
+  }
+]
