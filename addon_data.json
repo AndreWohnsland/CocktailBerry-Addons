@@ -3,5 +3,10 @@
     "name": "Start Glass Volume",
     "description": "A simple addon, which adds the option to define the default glass volume, set at machine start. This setting will replace the default 200 ml with the selected value.",
     "url": "https://raw.githubusercontent.com/AndreWohnsland/CocktailBerry-Addons/main/addons/start_glass_volume.py"
+  },
+  {
+    "name": "Recipe Presets",
+    "description": "Define custom recipe presets to define which recipes are enabled and which will be disabled. You can save and apply the presets at any time over the Addon GUI. Disabled recipes will be hidden in the recipe list and can not be selected. This addon is useful if you want to manage different selection of recipes for different occasions.",
+    "url": "https://raw.githubusercontent.com/AndreWohnsland/CocktailBerry-Addons/main/addons/recipe_presets.py"
   }
 ]

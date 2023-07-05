@@ -22,11 +22,21 @@ If you are interested in creating an addon for CocktailBerry, have a look into t
 
 Here is a list of currently available addons.
 
-### Start Glass Volume
+### 🥛 Start Glass Volume
 
 A simple addon, which adds the option to define the default glass volume, set at machine start.
 This setting will replace the default 200 ml with the selected value.
 Just install it over the GUI and enjoy the additional setting.
+
+### 📝 Recipe Presets
+
+Use this addon to get access to an additional GUI for the management of different active presets of your cocktail recipes.
+You can create and edit presets, as well as activate them.
+Within a preset, you can define the recipes, which should be available for the maker.
+The preset will then set your selection to enabled and all other recipes to disabled.
+Note that this does not change the default CocktailBerry behavior, but only alter the list used for available recipe calculation.
+Quickly switch between different presets and enjoy the flexibility of CocktailBerry.
+You can access the GUI as soon as you installed the addon over the addon GUI.
 
 ## Development
 
