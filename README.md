@@ -38,6 +38,13 @@ Note that this does not change the default CocktailBerry behavior, but only alte
 Quickly switch between different presets and enjoy the flexibility of CocktailBerry.
 You can access the GUI as soon as you installed the addon over the addon GUI.
 
+### ❔❕ Glass Detection
+
+This addon adds the option to detect the glass and only start the recipe, if a glass is placed.
+It need's some sort of detection hardware, which emits a signal (low or high works) if a glass is detected.
+This can be a IR sensor, a switch or whatever you like, as long as it emits the signal on detection and the inverse on no detection.
+The signal needs to be send at one given GPIO pin, which can be configured over the GUI.
+
 ## Development
 
 To get started go to the documentation for the [CocktailBerry addons](https://cocktailberry.readthedocs.io/addons/).

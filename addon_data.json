@@ -8,5 +8,10 @@
     "name": "Recipe Presets",
     "description": "Define custom recipe presets to define which recipes are enabled and which will be disabled. You can save and apply the presets at any time over the Addon GUI. Disabled recipes will be hidden in the recipe list and can not be selected. This addon is useful if you want to manage different selection of recipes for different occasions.",
     "url": "https://raw.githubusercontent.com/AndreWohnsland/CocktailBerry-Addons/main/addons/recipe_presets.py"
+  },
+  {
+    "name": "Glass Detection",
+    "description": "This addon adds the option to detect the glass and only start the recipe, if a glass is placed. Additional hardware is required, which emits high or low signal to given GPIO. Needs v1.30.4 or higher.",
+    "url": "https://raw.githubusercontent.com/AndreWohnsland/CocktailBerry-Addons/main/addons/start_glass_volume.py"
   }
 ]
