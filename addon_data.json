@@ -12,6 +12,6 @@
   {
     "name": "Glass Detection",
     "description": "This addon adds the option to detect the glass and only start the recipe, if a glass is placed. Additional hardware is required, which emits high or low signal to given GPIO. Needs v1.30.4 or higher.",
-    "url": "https://raw.githubusercontent.com/AndreWohnsland/CocktailBerry-Addons/main/addons/start_glass_volume.py"
+    "url": "https://raw.githubusercontent.com/AndreWohnsland/CocktailBerry-Addons/main/addons/glass_detection.py"
   }
 ]
