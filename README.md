@@ -26,6 +26,7 @@ Here is a list of currently available addons.
 
 A simple addon, which adds the option to define the default glass volume, set at machine start.
 This setting will replace the default 200 ml with the selected value.
+In addition, you can enable that this value is set after each cocktail, to ensure that this volume is always the default, when a user chooses a recipe.
 Just install it over the GUI and enjoy the additional setting.
 
 ### 📝 Recipe Presets
