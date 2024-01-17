@@ -28,6 +28,15 @@ class Addon(AddonInterface):
         }
         uil.add_config_description("ADDON_GLASS_VOLUME", desc)
         shared.cocktail_volume = int(getattr(cfg, "ADDON_GLASS_VOLUME"))
+        self.cocktail_volume = shared.cocktail_volume
+        # adds option to set the volume each time after a cocktail
+        cfg.add_config("ADDON_SET_VOLUME_AFTER_COCKTAIL", False)
+        desc = {
+            "en": "Set the glass volume to default after each cocktail.",
+            "de": "Setzt das Glasvolumen nach jedem Cocktail auf den Standardwert.",
+        }
+        uil.add_config_description("ADDON_SET_VOLUME_AFTER_COCKTAIL", desc)
+        self.set_volume = getattr(cfg, "ADDON_SET_VOLUME_AFTER_COCKTAIL")
 
     def cleanup(self):
         """Method for cleanup, executed a program end. """
@@ -40,6 +49,8 @@ class Addon(AddonInterface):
 
     def after_cocktail(self, data: dict[str, Any]):
         """Executed right after the cocktail preparation"""
+        if self.set_volume:
+            shared.cocktail_volume = self.cocktail_volume
 
     def build_gui(
         self,
