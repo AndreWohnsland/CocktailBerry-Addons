@@ -91,7 +91,7 @@ class Addon(AddonInterface):
 
     def build_gui(
         self,
-        container: QVBoxLayout,
+        container: "QVBoxLayout",
         button_generator: Callable[[str, Callable[[], None]], None],
     ) -> bool:
         """Builds up the GUI to do additional things on command.
