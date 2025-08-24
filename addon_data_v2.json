@@ -9,10 +9,10 @@
   },
   {
     "name": "Recipe Presets",
-    "description": "Define custom recipe presets to define which recipes are enabled and which will be disabled. You can save and apply the presets at any time over the Addon GUI. Disabled recipes will be hidden in the recipe list and can not be selected. This addon is useful if you want to manage different selection of recipes for different occasions.",
+    "description": "DISABLED: V2 breaks this. Define custom recipe presets to define which recipes are enabled and which will be disabled. You can save and apply the presets at any time over the Addon GUI. Disabled recipes will be hidden in the recipe list and can not be selected. This addon is useful if you want to manage different selection of recipes for different occasions.",
     "url": "https://raw.githubusercontent.com/AndreWohnsland/CocktailBerry-Addons/main/addons/recipe_presets.py",
     "minimal_version": "v1.18.0",
-    "disabled_since": "",
+    "disabled_since": "2.0.0",
     "version": "1.0.0"
   },
   {
