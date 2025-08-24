@@ -8,8 +8,10 @@ from PyQt5.QtWidgets import QVBoxLayout
 
 # Use the cfg to add your config / validation
 from src.config_manager import CONFIG as cfg, shared
+
 # Use the uil to add description and according translation
 from src.dialog_handler import UI_LANGUAGE as uil
+
 # The addon interface will provide intellisense for all possible methods
 from src.programs.addons import AddonInterface
 
@@ -18,8 +20,10 @@ ADDON_NAME = "Start Glass Volume"
 
 # The class needs to be called Addon and inherit from the AddonInterface
 class Addon(AddonInterface):
+    ADDON_VERSION = "1.0.0"
+
     def setup(self):
-        """Inits the addon, executed at program start. """
+        """Inits the addon, executed at program start."""
         options = [str(x) for x in range(100, 401, 25)]
         cfg.add_selection_config("ADDON_GLASS_VOLUME", options, "200")
         desc = {
@@ -39,7 +43,7 @@ class Addon(AddonInterface):
         self.set_volume = getattr(cfg, "ADDON_SET_VOLUME_AFTER_COCKTAIL")
 
     def cleanup(self):
-        """Method for cleanup, executed a program end. """
+        """Method for cleanup, executed a program end."""
 
     def before_cocktail(self, data: dict[str, Any]):
         """Executed right before the cocktail preparation.
@@ -55,7 +59,7 @@ class Addon(AddonInterface):
     def build_gui(
         self,
         container: QVBoxLayout,
-        button_generator: Callable[[str, Callable[[], None]], None]
+        button_generator: Callable[[str, Callable[[], None]], None],
     ) -> bool:
         """Builds up the GUI to do additional things on command.
         Return:

@@ -16,6 +16,8 @@ _logger = LoggerHandler("ADDON: Glass Detection")
 
 # The class needs to be called Addon and inherit from the AddonInterface
 class Addon(AddonInterface):
+    ADDON_VERSION = "1.0.0"
+
     def setup(self):
         """Inits the addon, executed at program start."""
         cfg.add_config("ADDON_GLASS_DETECTION_ACTIVE", False)

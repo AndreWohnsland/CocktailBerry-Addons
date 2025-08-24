@@ -2,7 +2,15 @@
 from typing import Any, Callable
 from PyQt5 import QtCore
 from PyQt5.QtCore import QSize
-from PyQt5.QtWidgets import QGridLayout, QPushButton, QAbstractItemView, QListWidget, QLabel, QComboBox, QVBoxLayout
+from PyQt5.QtWidgets import (
+    QGridLayout,
+    QPushButton,
+    QAbstractItemView,
+    QListWidget,
+    QLabel,
+    QComboBox,
+    QVBoxLayout,
+)
 from PyQt5.QtGui import QFont, QCursor
 
 # Auto created by CocktailBerry CLI version 1.20.3
@@ -12,10 +20,13 @@ from PyQt5.QtGui import QFont, QCursor
 
 # Use the LoggerHandler class for your logger
 from src.logger_handler import LoggerHandler
+
 # Use the dpc to display dialogues or prompts to the user
 from src.display_controller import DP_CONTROLLER as dpc
+
 # You can access the default database with help of the dbc
 from src.database_commander import DB_COMMANDER as dbc
+
 # The addon interface will provide intellisense for all possible methods
 from src.programs.addons import AddonInterface
 from src.ui_elements.clickablelineedit import ClickableLineEdit
@@ -28,8 +39,10 @@ _logger = LoggerHandler("ADDON: Recipe Presets")
 
 # The class needs to be called Addon and inherit from the AddonInterface
 class Addon(AddonInterface):
+    ADDON_VERSION = "1.0.0"
+
     def setup(self):
-        """Inits the addon, executed at program start. """
+        """Inits the addon, executed at program start."""
         # creates two new table if it does not exists
         # the tables are called preset and preset_data
         # preset contains the preset name and the id
@@ -42,7 +55,7 @@ class Addon(AddonInterface):
         )
 
     def cleanup(self):
-        """Method for cleanup, executed a program end. """
+        """Method for cleanup, executed a program end."""
 
     def before_cocktail(self, data: dict[str, Any]):
         """Executed right before the cocktail preparation.
@@ -56,7 +69,7 @@ class Addon(AddonInterface):
     def build_gui(
         self,
         container: QVBoxLayout,
-        button_generator: Callable[[str, Callable[[], None]], None]
+        button_generator: Callable[[str, Callable[[], None]], None],
     ) -> bool:
         """Builds up the GUI to do additional things on command.
         Return:
@@ -130,12 +143,18 @@ class Addon(AddonInterface):
         self.list_not_used.setSortingEnabled(True)
         self.list_used.setSortingEnabled(True)
         # populate the ui logic
-        self.name_input.clicked.connect(lambda: KeyboardWidget(self, self.name_input, 30))  # type: ignore
+        self.name_input.clicked.connect(
+            lambda: KeyboardWidget(self, self.name_input, 30)
+        )  # type: ignore
         self.populate_dropdown()
         self.fill_list()
         self.button_update.clicked.connect(self.update_preset)
-        self.button_add.clicked.connect(lambda: self.switch_elements(self.list_used, self.list_not_used))
-        self.button_remove.clicked.connect(lambda: self.switch_elements(self.list_not_used, self.list_used))
+        self.button_add.clicked.connect(
+            lambda: self.switch_elements(self.list_used, self.list_not_used)
+        )
+        self.button_remove.clicked.connect(
+            lambda: self.switch_elements(self.list_not_used, self.list_used)
+        )
         self.button_apply.clicked.connect(self.apply_preset)
         self.selection_preset.currentIndexChanged.connect(self.preset_selected)
         return True
@@ -148,15 +167,23 @@ class Addon(AddonInterface):
         # if the id is "new" we need to create a new entry
         new_name = self.name_input.text()
         if preset_id == "new":
-            dbc.handler.query_database("INSERT INTO preset (name) VALUES (?)", (new_name,))
+            dbc.handler.query_database(
+                "INSERT INTO preset (name) VALUES (?)", (new_name,)
+            )
             # now get the id of the new entry
-            preset_id = dbc.handler.query_database("SELECT id FROM preset WHERE name = ?", (new_name,))[0][0]
+            preset_id = dbc.handler.query_database(
+                "SELECT id FROM preset WHERE name = ?", (new_name,)
+            )[0][0]
             self.selection_preset.addItem(str(preset_id))
         # else update the name
         else:
-            dbc.handler.query_database("UPDATE preset SET name = ? WHERE id = ?", (new_name, preset_id))
+            dbc.handler.query_database(
+                "UPDATE preset SET name = ? WHERE id = ?", (new_name, preset_id)
+            )
         # delete all old entries
-        dbc.handler.query_database("DELETE FROM preset_data WHERE preset_id = ?", (preset_id,))
+        dbc.handler.query_database(
+            "DELETE FROM preset_data WHERE preset_id = ?", (preset_id,)
+        )
         # get all the text from the list widget
         used = [self.list_used.item(i).text() for i in range(self.list_used.count())]
 
@@ -166,9 +193,11 @@ class Addon(AddonInterface):
                 continue
             dbc.handler.query_database(
                 "INSERT INTO preset_data (preset_id, recipe_id) VALUES (?, ?)",
-                (int(preset_id), cocktail.id)
+                (int(preset_id), cocktail.id),
             )
-        dpc.standard_box(f"The preset #{preset_id}({new_name}) was updated successfully")
+        dpc.standard_box(
+            f"The preset #{preset_id}({new_name}) was updated successfully"
+        )
         # sets to the new preset, important if a new one was created
         dpc.set_combobox_item(self.selection_preset, str(preset_id))
 
@@ -176,8 +205,11 @@ class Addon(AddonInterface):
         """Populates the dropdown with all the presets"""
         dpc.fill_single_combobox(
             self.selection_preset,
-            ["new"] + [str(i[0]) for i in dbc.handler.query_database("SELECT id FROM preset")],
-            True, False, False
+            ["new"]
+            + [str(i[0]) for i in dbc.handler.query_database("SELECT id FROM preset")],
+            True,
+            False,
+            False,
         )
 
     def fill_list(self):
@@ -219,7 +251,9 @@ class Addon(AddonInterface):
             ON pd.recipe_id = r.ID
             WHERE pd.preset_id = ?
             """
-        preset_data = [x[0] for x in dbc.handler.query_database(query, (int(selected_preset),))]
+        preset_data = [
+            x[0] for x in dbc.handler.query_database(query, (int(selected_preset),))
+        ]
         # build sets of data used and not used
         all_recipes = {x.name for x in dbc.get_all_cocktails()}
         not_used = list(all_recipes - set(preset_data))
@@ -227,7 +261,9 @@ class Addon(AddonInterface):
         self.list_not_used.clear()
         dpc.fill_list_widget(self.list_used, preset_data)
         dpc.fill_list_widget(self.list_not_used, not_used)
-        preset_name = dbc.handler.query_database("SELECT name FROM preset WHERE id = ?", (int(selected_preset),))[0][0]
+        preset_name = dbc.handler.query_database(
+            "SELECT name FROM preset WHERE id = ?", (int(selected_preset),)
+        )[0][0]
         self.name_input.setText(preset_name)
 
     def apply_preset(self):
