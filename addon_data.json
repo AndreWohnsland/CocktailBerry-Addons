@@ -1,20 +1,23 @@
 [
   {
     "name": "Start Glass Volume",
-    "description": "Deprecated for latest CocktailBerry versions: You can get a similar behaviour without this addon in the base software. If you encounter issues, please uninstall this addon. A simple addon, which adds the option to define the default glass volume, set at machine start. This setting will replace the default 200 ml with the selected value. You can also enable the reset of the volume to your value after each cocktail.",
+    "description": "Deprecated for latest CocktailBerry versions: You can get a similar behavior without this addon in the base software. If you encounter issues, please uninstall this addon. A simple addon, which adds the option to define the default glass volume, set at machine start. This setting will replace the default 200 ml with the selected value. You can also enable the reset of the volume to your value after each cocktail.",
     "url": "https://raw.githubusercontent.com/AndreWohnsland/CocktailBerry-Addons/main/addons/start_glass_volume.py",
-    "disabled_since": "v1.30.1"
+    "disabled_since": "v1.30.1",
+    "version": "1.0.0"
   },
   {
     "name": "Recipe Presets",
     "description": "Define custom recipe presets to define which recipes are enabled and which will be disabled. You can save and apply the presets at any time over the Addon GUI. Disabled recipes will be hidden in the recipe list and can not be selected. This addon is useful if you want to manage different selection of recipes for different occasions.",
     "url": "https://raw.githubusercontent.com/AndreWohnsland/CocktailBerry-Addons/main/addons/recipe_presets.py",
-    "disabled_since": ""
+    "disabled_since": "",
+    "version": "1.0.0"
   },
   {
     "name": "Glass Detection",
     "description": "This addon adds the option to detect the glass and only start the recipe, if a glass is placed. Additional hardware is required, which emits high or low signal to given GPIO. Needs v1.30.4 or higher.",
     "url": "https://raw.githubusercontent.com/AndreWohnsland/CocktailBerry-Addons/main/addons/glass_detection.py",
-    "disabled_since": ""
+    "disabled_since": "",
+    "version": "1.0.0"
   }
 ]
