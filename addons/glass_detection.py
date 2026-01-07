@@ -1,14 +1,13 @@
 from typing import TYPE_CHECKING, Any, Callable
 
 if TYPE_CHECKING:
-    from PyQt5.QtWidgets import QVBoxLayout
+    from PyQt6.QtWidgets import QVBoxLayout
 
 from src.config_manager import CONFIG as cfg
 from src.dialog_handler import UI_LANGUAGE as uil
 from src.logger_handler import LoggerHandler
 from src.machine.controller import MACHINE
 from src.programs.addons import AddonInterface
-from src.utils import time_print
 
 ADDON_NAME = "Glass Detection"
 _logger = LoggerHandler("ADDON: Glass Detection")
@@ -16,7 +15,7 @@ _logger = LoggerHandler("ADDON: Glass Detection")
 
 # The class needs to be called Addon and inherit from the AddonInterface
 class Addon(AddonInterface):
-    ADDON_VERSION = "2.0.0"
+    ADDON_VERSION = "3.0.0"
 
     def __init__(self) -> None:
         self.config_created = False
@@ -67,19 +66,16 @@ class Addon(AddonInterface):
                     is_input=True,
                     pull_down=self.glass_use_high,
                 )
-                text = f"ADDON: Glass Detection Pin {self.glass_detection_pin} initialized."
-                time_print(text)
+                _logger.info(f"ADDON: Glass Detection Pin {self.glass_detection_pin} initialized.")
             except (OSError, RuntimeError) as e:
-                text = (
+                _logger.error(
                     f"ADDON: Could not initialize Glass Detection Pin {self.glass_detection_pin}, "
                     "disabling Glass Detection, see log for details."
                 )
-                time_print(text)
-                _logger.error(text)
                 _logger.log_exception(e)
                 self.glass_detection_active = False
         else:
-            time_print("ADDON: Glass Detection is installed but deactivated in the config, will not use it.")
+            _logger.warning("ADDON: Glass Detection is installed but deactivated in the config, will not use it.")
 
     def cleanup(self) -> None:
         """Clean up resources, executed at program end."""

@@ -1,0 +1,59 @@
+[project]
+name = "cocktailberry-addons"
+version = "1.0.0"
+description = "Addons for CocktailBerry"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[tool.ruff]
+# don't check import order in the migration script
+line-length = 120
+exclude = ["ui_elements", "addon_skeleton.py"]
+target-version = "py39"
+
+[tool.ruff.lint]
+extend-safe-fixes = [
+  "UP", # pyupgrade
+  "D107", # Missing docstring in __init__
+  "D205", # 1 blank line required between summary line and description
+  "W291", # Trailing whitespace
+]
+per-file-ignores = {"runme.py" = ["E402"], "migrator.py" = ["E402"], "api.py" = ["E402"], "tests/*" = ["ANN201", "ANN202", "PLR2004"] }
+select = [
+  "A", # flake8-builtins
+  "ANN", # Type annotations
+  "C", # Convention
+  "C4", # flake-comprehensions
+  "D", # pydocstyle 
+  "E", # pycodestyle
+  "F", # Pyflakes
+  "FAST", # FastAPI
+  "I", # isort 
+  "ICN001", # {name} should be imported as {asname},
+  "PIE", # flake8-pie
+  "PL", # pylint
+  "PTH", # flake8-use-pathlib
+  "PYI", # flake8-pyi
+  "Q", # flake8-quotes
+  "R", # Refactor
+  "RET", # flake8-return
+  "RUF", # Ruff
+  "SIM", # flake8-simplify
+  "UP", # pyupgrade
+  "W", # Pylint (Warning)
+]
+ignore = [
+  "D100", # Missing docstring in public module
+  "D101", # Missing docstring in public class
+  "D102", # Missing docstring in public method
+  "D103",  # Missing docstring in public function
+  "D104", # Missing docstring in public package
+  "D105", # Missing docstring in magic method
+  "D107", # Missing docstring in __init__
+  "D203", # 1 blank line required before class docstring
+  "D213", # Multi-line docstring summary should start at the second line
+  "ANN401", # no Any for *args or **kwargs
+  "PLR0913", # Too many arguments
+  "PLC0415", # `import` should be at the top-level of a file
+]
